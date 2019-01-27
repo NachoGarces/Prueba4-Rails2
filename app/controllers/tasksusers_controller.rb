@@ -3,9 +3,11 @@ class TasksusersController < ApplicationController
 
   def create
     @task = Task.find(params[:task_id])
+    time = Time.now
     @tasksusers = TasksUsers.new(task_id: @task.id,
                                  user_id: current_user.id,
-                                 completed: true)
+                                 completed: true,
+                                 completed_at: time)
     if @tasksusers.save
       redirect_to root_path, notice: 'Tarea completada!!'
     else
@@ -16,5 +18,15 @@ class TasksusersController < ApplicationController
   def index
     @tasksusers = TasksUsers.all
     @task = Task.all
+  end
+
+  def update
+    @tasksusers = TasksUsers.find(params[:id])
+    if @tasksusers.completed == true
+      @tasksusers.update(completed: false, completed_at: nil)
+    else
+      @tasksusers.update(completed: true, completed_at: Time.now)
+    end
+    redirect_to tasks_path
   end
 end

@@ -16,11 +16,12 @@
       <% @tasksusers.each do |tus| %>
         <div class='card text-white border-primary text-center'>
           <% @user.each do |us| %>
-            <% if tus.completed == true %>
-              <h4> <%= us.name %> <%= us.lastname %> </h4>
+            <% if tus.completed? && tus.user_id == us.id %>
+              <h4><%= image_tag us.avatar, class:'w-90' %> <%= us.name %> <%= us.lastname %> </h4>
             <% end %>
           <% end %>
         </div>
+        <br>
       <% end %>
       <div class='w-100 mt-2'> </div>
   </div>

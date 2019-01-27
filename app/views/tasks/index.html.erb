@@ -3,6 +3,7 @@
   <div class='row'>
     <% @tasks.each_slice(3) do |row| %>
         <% row.each do |task| %>
+        <% tus = TasksUsers.find_by(user_id: current_user.id, task_id: task.id) %>
         <div class='col-md-4'>
           <div class='card text-white border-primary'>
             <%= image_tag task.photo, class:'card-img-top' %>
@@ -11,8 +12,8 @@
               <p> <%= task.description %> </p>
               <div class='btn-group' role='group' aria-label='Basic example'>
                 <%= link_to 'Ver', task_path(task), class:'btn btn-primary' %>
-                <% if @tasksusers_completed == 'true' %>
-                  <%= link_to 'NO Completado', '#', class:'btn btn-danger' %>
+                <% if true %>
+                  <%= link_to 'NO Completado', task_tasksusers_path(task), class:'btn btn-danger', method: :post %>
                 <% else %>
                   <%= link_to 'Completado', task_tasksusers_path(task) , class:'btn btn-success', method: :post %>
                 <% end %>
