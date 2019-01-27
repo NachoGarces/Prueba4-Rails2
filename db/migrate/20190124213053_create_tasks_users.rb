@@ -1,9 +1,9 @@
-class CreateUsertasks < ActiveRecord::Migration[5.2]
+class CreateTasksUsers < ActiveRecord::Migration[5.2]
   def change
-    create_table :usertasks do |t|
+    create_table :tasks_users do |t|
       t.references :user, foreign_key: true
       t.references :task, foreign_key: true
-      t.boolean :completed
+      t.boolean :completed, default: false
 
       t.timestamps
     end

@@ -1,31 +1,28 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Tasks</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Photo</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.title %></td>
-        <td><%= task.description %></td>
-        <td><%= task.photo %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div class='container'>
+  <h1 class='text-dark'> Tareas </h1>
+  <div class='row'>
+    <% @tasks.each_slice(3) do |row| %>
+        <% row.each do |task| %>
+        <div class='col-md-4'>
+          <div class='card text-white border-primary'>
+            <%= image_tag task.photo, class:'card-img-top' %>
+            <div class='body text-center'>
+              <h5> <%= task.title %> </h5>
+              <p> <%= task.description %> </p>
+              <div class='btn-group' role='group' aria-label='Basic example'>
+                <%= link_to 'Ver', task_path(task), class:'btn btn-primary' %>
+                <% if @tasksusers_completed == 'true' %>
+                  <%= link_to 'NO Completado', '#', class:'btn btn-danger' %>
+                <% else %>
+                  <%= link_to 'Completado', task_tasksusers_path(task) , class:'btn btn-success', method: :post %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      <div class='w-100 mt-2'> </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Task', new_task_path %>
+    <%= link_to 'Nueva Tarea', new_task_path, class:'btn btn-info' %>
+  </div>
+</div>

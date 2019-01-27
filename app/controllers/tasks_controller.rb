@@ -4,12 +4,15 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
+    @tasksusers = TasksUsers.all
     @tasks = Task.all
   end
 
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+    @tasksusers = TasksUsers.all
+    @user = User.all
   end
 
   # GET /tasks/new

@@ -11,16 +11,23 @@
       <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/darkly/bootstrap.min.css" rel="stylesheet" integrity="sha384-F7cPHYSdE3FzBKvdxDKyFow9Y28Yq7KGHQOKpOI+rwc8s6jJnp///mpEJAib2EM6" crossorigin="anonymous">
       <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= render 'navbar' %>
+  <body class='bg-secondary'>
+    <%= render 'layouts/navbar' %>
     <div class='container'>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <% if notice.present? %>
+        <div class='alert-success notice text-center' role='alert'>
+          <%= notice %>
+        </div>
+      <% end %>
+      <% if alert.present? %>
+        <div class='alert-danger alert text-center' role='alert'>
+          <%= alert %>
+        </div>
+      <% end %>
       <%= yield %>
     </div>
   </body>

@@ -1,43 +1,43 @@
-<h2>Sign up</h2>
+<h2 class='text-dark'>Registro</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
+  <div class='field text-dark'>
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:'form-control ds-input w-30' %>
   </div>
 
-  <div class="field">
-    <%= f.label :Name %><br />
-    <%= f.text_field :Name %>
+  <div class='field text-dark'>
+    <%= f.label :name %><br />
+    <%= f.text_field :name, class:'form-control ds-input w-30' %>
   </div>
 
-  <div class="field">
+  <div class='field text-dark'>
     <%= f.label :lastname %><br />
-    <%= f.text_field :lastname %>
+    <%= f.text_field :lastname, class:'form-control ds-input w-30' %>
   </div>
 
-  <div class="field">
+  <div class='field text-dark'>
     <%= f.label :avatar %><br />
-    <%= f.text_field :avatar %>
+    <%= f.text_field :avatar, class:'form-control ds-input w-30' %>
   </div>
 
-  <div class="field">
+  <div class='field text-dark'>
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, class:'form-control ds-input w-30', autocomplete: "new-password" %>
   </div>
 
-  <div class="field">
+  <div class='field text-dark'>
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, class:'form-control ds-input w-30', autocomplete: "new-password" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class='btn btn-success actions text-dark'>
+    <%= f.submit 'Registrarse' %>
   </div>
 <% end %>
 

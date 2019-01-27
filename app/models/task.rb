@@ -1,4 +1,3 @@
 class Task < ApplicationRecord
-  has_many :usertask
-  has_many :users, through: :usertask
+  has_and_belongs_to_many :users
 end

@@ -1,25 +1,25 @@
-<h2>Log in</h2>
+<h2 class='text-dark'>Iniciar sesion</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
+  <div class='field text-dark'>
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, class:'form-control ds-input w-30', autofocus: true, autocomplete: "email" %>
   </div>
 
-  <div class="field">
+  <div class='field text-dark'>
     <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+    <%= f.password_field :password, class:'form-control ds-input w-30', autocomplete: "current-password" %>
   </div>
 
   <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
+    <div class='field text-dark'>
+      <%= f.check_box :remember_me, class:'float-left mr-3' %>
       <%= f.label :remember_me %>
     </div>
   <% end -%>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+  <div class='btn btn-success'>
+    <%= f.submit 'Iniciar sesion' %>
   </div>
 <% end %>
 
