@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'usertasks/create'
+  get 'tasksuasers/create'
   root to: 'tasks#index'
   resources :tasks do
     resources :tasksusers, only: [:create, :update]

@@ -2,26 +2,42 @@
   <h1 class='text-dark'> Tareas </h1>
   <div class='row'>
     <% @tasks.each_slice(3) do |row| %>
-        <% row.each do |task| %>
+      <% row.each do |task| %>
         <% tus = TasksUsers.find_by(user_id: current_user.id, task_id: task.id) %>
-        <div class='col-md-4'>
-          <div class='card text-white border-primary'>
-            <%= image_tag task.photo, class:'card-img-top' %>
-            <div class='body text-center'>
-              <h5> <%= task.title %> </h5>
-              <p> <%= task.description %> </p>
-              <div class='btn-group' role='group' aria-label='Basic example'>
-                <%= link_to 'Ver', task_path(task), class:'btn btn-primary' %>
-                <% if true %>
-                  <%= link_to 'NO Completado', task_tasksusers_path(task), class:'btn btn-danger', method: :post %>
-                <% else %>
-                  <%= link_to 'Completado', task_tasksusers_path(task) , class:'btn btn-success', method: :post %>
-                <% end %>
+        <% if tus.nil? || (tus.nil? == false && tus.completed == false) %>
+          <div class='col-md-4'>
+            <div class='card text-white border-primary'>
+              <%= image_tag task.photo, class:'card-img-top' %>
+              <div class='body text-center'>
+                <h5> <%= task.title %> </h5>
+                <p> <%= task.description %> </p>
+                <div class='btn-group' role='group' aria-label='Basic example'>
+                  <%= link_to 'Ver', task_path(task), class:'btn btn-primary' %>
+                  <% if tus.nil? %>
+                    <%= link_to 'Completado', task_tasksusers_path(task), class:'btn btn-success', method: :post %>
+                  <% else %>
+                    <%= link_to 'Completado', task_tasksuser_path(task, tus) , class:'btn btn-success', method: :patch %>
+                  <% end %>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        <% elsif tus.nil? == false && tus.completed = true %>
+          <div class='col-md-4'>
+            <div class='card text-white border-primary'>
+              <%= image_tag task.photo, class:'card-img-top' %>
+              <div class='body text-center'>
+                <h5> <%= task.title %> </h5>
+                <p> <%= task.description %> </p>
+                <div class='btn-group' role='group' aria-label='Basic example'>
+                  <%= link_to 'Ver', task_path(task), class:'btn btn-primary' %>
+                  <%= link_to 'NO Completado', task_tasksuser_path(task, tus), class:'btn btn-danger', method: :patch %>
+                </div>
+              </div>
+            </div>
+          </div>
         <% end %>
+      <% end %>
       <div class='w-100 mt-2'> </div>
     <% end %>
     <%= link_to 'Nueva Tarea', new_task_path, class:'btn btn-info' %>

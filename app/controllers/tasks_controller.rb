@@ -1,5 +1,7 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :total_completed
 
   # GET /tasks
   # GET /tasks.json
@@ -18,6 +20,17 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new
+  end
+
+  def total_completed
+    if signed_in?
+      @tas = 0
+      @tasksusers = TasksUsers.all
+      @total_completed = @tasksusers.where(user_id: current_user.id)
+      @total_completed.each do |total|
+        @tas += 1 if total.completed == true
+      end
+   end
   end
 
   # GET /tasks/1/edit

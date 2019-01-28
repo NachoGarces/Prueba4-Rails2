@@ -11,22 +11,22 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class='field text-dark'>
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class:'form-control ds-input w-30' %>
   </div>
 
-  <div class="field">
+  <div class='field text-dark'>
     <%= form.label :description %>
-    <%= form.text_field :description %>
+    <%= form.text_field :description, class:'form-control ds-input w-30' %>
   </div>
 
-  <div class="field">
+  <div class='field text-dark'>
     <%= form.label :photo %>
-    <%= form.text_field :photo %>
+    <%= form.text_field :photo, class:'form-control ds-input w-30' %>
   </div>
 
-  <div class="actions">
+  <div class="btn btn-success">
     <%= form.submit %>
   </div>
 <% end %>

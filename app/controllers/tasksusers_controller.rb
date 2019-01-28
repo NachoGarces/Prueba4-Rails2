@@ -15,11 +15,6 @@ class TasksusersController < ApplicationController
     end
   end
 
-  def index
-    @tasksusers = TasksUsers.all
-    @task = Task.all
-  end
-
   def update
     @tasksusers = TasksUsers.find(params[:id])
     if @tasksusers.completed == true
@@ -27,6 +22,6 @@ class TasksusersController < ApplicationController
     else
       @tasksusers.update(completed: true, completed_at: Time.now)
     end
-    redirect_to tasks_path
+    redirect_to root_path
   end
 end
